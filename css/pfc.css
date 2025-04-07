@@ -67,3 +67,13 @@ h1{
     width:50vh;
     border-radius:10px;
 }
+
+@media screen and (max-width: 600px) {
+    .score{
+        width:30vh;
+    }
+
+    .results{
+        width:30vh;
+    }
+}

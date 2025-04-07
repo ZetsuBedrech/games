@@ -67,3 +67,15 @@ button:active{
 .card:active {
     transform: scale(0.98);
 }
+
+@media screen and (max-width: 800px) {
+    .game-board {
+        grid-template-columns: repeat(3, 110px);
+        grid-gap: 10px;
+    }
+
+    .card{
+        width:100px;
+        height:100px;
+    }
+}
