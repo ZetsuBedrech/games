@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #D3D8E1;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:5vh;
+}
+
+a {
+    color: #DAA577;
+    text-decoration: none;
+    font-size: 120%;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-style:italic;
+}
+
+select {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid #DAA577;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#horoscope {
+    font-size: 22px;
+    font-style: italic;
+    color: #555;
+    margin: 20px 0;
+    padding: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 4px solid #DAA577;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+}
+
+#horoscope.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+button {
+    font-size: 18px;
+    padding: 12px 25px;
+    background-color: #DAA577;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #aa805c;
+}
+
+button:active {
+    background-color: #75583f;
+    transform: scale(0.98);
+}

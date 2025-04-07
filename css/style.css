@@ -1,64 +1,77 @@
-    body{
-        background-color:#64516B;
-        text-align:center;
-    }
+body{
+    background-color:#6d6d6d;
+    text-align:center;
+}
 
-    .mainbody{
-        display:flex;
-        flex-direction:column;
-        height:100vh;
-        font-size:150%;
-    }
+.mainbody{
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    font-size:150%;
+}
 
-    ul{
-        background-color:#A37F7E;
-        text-align:center;
-        width:50%;
-        margin:0 auto;
-        padding:10px;
-        border-radius:20px;
-    }
+h1{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    font-style:italic;
+}
 
-    li {
-        position: relative; /* Permet de positionner correctement ::before */
-        list-style-type: none;
-        background-color: #E1C7AE;
-        margin: 10px;
-        border-radius: 20px;
-        padding: 10px;
-        overflow: hidden; /* Empêche ::before de déborder */
-        color: black; /* Couleur initiale du texte */
-        text-align: center; /* Aligne le texte au centre */
-        z-index: 1; /* Place le texte au-dessus de ::before */
-        transition: color 0.3s ease; /* Transition pour la couleur du texte */
-    }
-    
-    li::before {
-        content: ''; /* Nécessaire pour afficher ::before */
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #A08C99;
-        border-radius: 20px; /* Même arrondi que le bouton */
-        transform: scaleX(0); /* Commence caché horizontalement */
-        transform-origin: left; /* L'animation commence à gauche */
-        transition: transform 0.3s ease; /* Transition fluide */
-        z-index: -1; /* Place ::before derrière le texte */
-    }
-    
-    li:hover::before {
-        transform: scaleX(1); /* Fait apparaître l'arrière-plan */
-    }
-    
-    li:hover {
-        color: white; /* Change la couleur du texte au survol */
-    }
-    
-    
+ul{
+    text-align:center;
+    width:50%;
+    margin:0 auto;
+    padding:10px;
+    border-radius:20px;
+}
 
-    a{
-        color:black;
-        text-decoration:none;
-    }
+li {
+    position: relative;
+    list-style-type: none;
+    background-color: #E1C7AE;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    color: black;
+    text-align: center;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+li a {
+    display: block; /* Faire en sorte que l'élément <a> occupe tout l'espace */
+    padding: 10px; /* Appliquer le padding au lien pour le rendre aussi grand que le <li> */
+    color: inherit; /* Assurer que la couleur du texte de l'ancre hérite de celle du <li> */
+    text-decoration: none; /* Retirer la décoration du lien */
+    width: 100%; /* S'assurer que l'ancre prend toute la largeur du <li> */
+    height: 100%; /* S'assurer que l'ancre prend toute la hauteur du <li> */
+}
+
+li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #A08C99;
+    border-radius: 20px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+li:hover::before {
+    transform: scaleX(1);
+}
+
+li:hover {
+    color: white;
+}
+
+a{
+    color:black;
+    text-decoration:none;
+}

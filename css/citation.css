@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #D3D8E1;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:5vh;
+}
+
+a {
+    color: #3C79AE;
+    text-decoration: none;
+    font-size: 120%;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-style:italic;
+}
+
+#citation {
+    font-size: 22px;
+    font-style: italic;
+    color: #555;
+    margin: 20px 0;
+    padding: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 4px solid #3C79AE;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+}
+
+button {
+    font-size: 18px;
+    padding: 12px 25px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3C79AE;
+}
+
+button:active {
+    background-color: #2a5d8f;
+    transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    #citation {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
