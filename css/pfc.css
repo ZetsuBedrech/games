@@ -1,0 +1,69 @@
+body {
+    background-color: grey;
+    text-align:center;
+    margin-top:2vh;
+}
+
+a{
+    color:white;
+    font-size:120%;
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+
+
+/* buttons */
+.joueur{
+    margin:50px;
+}
+
+.joueur button{
+    margin:0 auto;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    font-size:150%;
+}
+
+.joueur button:hover{
+    background-color:lightgrey;
+    cursor:pointer;
+}
+
+.joueur button:active{
+    background-color:darkgrey;
+}
+
+/* score */
+.score{
+    margin:0 auto;
+    padding:10px;
+    color:white;
+    font-size:115%;
+    font-weight:bold;
+    background-color:black;
+    width:50vh;
+    border-radius:10px;
+}
+
+/* results */
+.results{
+    margin:0 auto;
+    padding:10px;
+    color:white;
+    font-size:115%;
+    font-weight:bold;
+    background-color:black;
+    width:50vh;
+    border-radius:10px;
+}

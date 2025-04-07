@@ -1,0 +1,69 @@
+body {
+    background-color: grey;
+    text-align:center;
+    margin-top:2vh;
+}
+
+a{
+    color:white;
+    font-size:120%;
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+button{
+    margin:0 auto;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    font-size:150%;
+}
+button:hover{
+    background-color:lightgrey;
+    cursor:pointer;
+}
+
+button:active{
+    background-color:darkgrey;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.card {
+    width: 150px;
+    height: 150px;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    border-radius:8px;
+}
+
+.card:active {
+    transform: scale(0.98);
+}

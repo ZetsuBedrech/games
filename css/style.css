@@ -1,0 +1,64 @@
+    body{
+        background-color:#64516B;
+        text-align:center;
+    }
+
+    .mainbody{
+        display:flex;
+        flex-direction:column;
+        height:100vh;
+        font-size:150%;
+    }
+
+    ul{
+        background-color:#A37F7E;
+        text-align:center;
+        width:50%;
+        margin:0 auto;
+        padding:10px;
+        border-radius:20px;
+    }
+
+    li {
+        position: relative; /* Permet de positionner correctement ::before */
+        list-style-type: none;
+        background-color: #E1C7AE;
+        margin: 10px;
+        border-radius: 20px;
+        padding: 10px;
+        overflow: hidden; /* Empêche ::before de déborder */
+        color: black; /* Couleur initiale du texte */
+        text-align: center; /* Aligne le texte au centre */
+        z-index: 1; /* Place le texte au-dessus de ::before */
+        transition: color 0.3s ease; /* Transition pour la couleur du texte */
+    }
+    
+    li::before {
+        content: ''; /* Nécessaire pour afficher ::before */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #A08C99;
+        border-radius: 20px; /* Même arrondi que le bouton */
+        transform: scaleX(0); /* Commence caché horizontalement */
+        transform-origin: left; /* L'animation commence à gauche */
+        transition: transform 0.3s ease; /* Transition fluide */
+        z-index: -1; /* Place ::before derrière le texte */
+    }
+    
+    li:hover::before {
+        transform: scaleX(1); /* Fait apparaître l'arrière-plan */
+    }
+    
+    li:hover {
+        color: white; /* Change la couleur du texte au survol */
+    }
+    
+    
+
+    a{
+        color:black;
+        text-decoration:none;
+    }

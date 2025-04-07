@@ -1,0 +1,83 @@
+body {
+    background-color: grey;
+    text-align:center;
+    margin-top:2vh;
+}
+
+a{
+    color:white;
+    font-size:120%;
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+.container{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    justify-content:center;
+    align-items:center;
+    background-color:rgb(145, 145, 145);
+    width:80%;
+    margin:0 auto;
+    padding:10px;
+    height:70vh;
+    border-radius:10px;
+}
+
+.champion{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    justify-content:center;
+    align-items:center;
+    width:30%;
+    margin:0 auto;
+    padding:10px;
+    border-radius:10px;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.items #randomitems {
+    display: flex;
+    flex-wrap: wrap; /* Permet d'aller sur plusieurs lignes */
+    justify-content: center;
+    gap: 50px; /* Ajoute de l'espace entre les items */
+    margin: 20px 0;
+}
+
+img{
+    border-radius:10px;
+}
+
+button{
+    margin-bottom:10px;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    font-size:150%;
+}
+
+button:hover{
+    background-color:lightgrey;
+    cursor:pointer;
+}

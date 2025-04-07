@@ -1,0 +1,57 @@
+body {
+    background-color: grey;
+    text-align:center;
+    margin-top:2vh;
+}
+
+a{
+    color:white;
+    font-size:120%;
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+#word, #guesses {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+#incorrect-guesses {
+    color: red;
+}
+.hidden {
+    visibility: hidden;
+}
+
+button{
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    font-size:150%;
+}
+
+button:hover{
+    background-color:lightgrey;
+    cursor:pointer;
+}
+
+p{
+    font-size:120%;
+}
+
+input{
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    font-size:150%;
+}
