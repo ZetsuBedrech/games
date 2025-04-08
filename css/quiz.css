@@ -1,12 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: grey;
-    text-align:center;
-    margin-top:2vh;
+    background-color: #6d6d6d;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:5vh;
 }
 
 a{
@@ -18,31 +25,80 @@ h1{
     color:white;
     font-weight:bold;
     text-decoration:underline;
-    text-shadow:
-        -1px -1px 0 black,
-        1px -1px 0 black,
-        -1px 1px 0 black,
-        1px 1px 0 black;
 }
 
-.answers{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+.quiz-container {
+    margin-top:20px;
+    background: white;
+    width: 60%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-button{
-    margin:10px;
-    padding:10px;
-    border-radius:10px;
-    border:none;
-    font-size:150%;
-    width:70vh;
+.question {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-button:hover{
-    background-color:lightgrey;
-    cursor:pointer;
+.answers {
+    margin-top: 20px;
 }
 
+.answer-button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 50%;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.answer-button:hover {
+    background-color: #e7e7e7;
+    transform: scale(1.05);
+}
+
+.answer-button:active {
+    background-color: #d3d3d3;
+}
+
+.answer-button.correct {
+    background-color: #28a745;
+    color: white;
+}
+
+.answer-button.incorrect {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Result Section */
+.result {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Right and Wrong Answer Counters */
+.numberanwser {
+    margin-bottom: 20px;
+}
+
+.rightanswer, .falseanswer {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .quiz-container {
+        width: 80%;
+    }
+}

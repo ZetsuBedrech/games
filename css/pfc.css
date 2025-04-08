@@ -1,5 +1,5 @@
 body {
-    background-color: grey;
+    background-color: #6d6d6d;
     text-align:center;
     margin-top:2vh;
 }
@@ -13,16 +13,9 @@ h1{
     color:white;
     font-weight:bold;
     text-decoration:underline;
-    text-shadow:
-        -1px -1px 0 black,
-        1px -1px 0 black,
-        -1px 1px 0 black,
-        1px 1px 0 black;
 }
 
 
-
-/* buttons */
 .joueur{
     margin:50px;
 }
