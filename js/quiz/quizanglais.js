@@ -1,108 +1,109 @@
 let currentQuestion = 0;
-let currentCorrectAnswerIndex = 0; // Index de la bonne réponse après mélange
+let currentCorrectAnswerIndex = 0;
 
 const questions = [
     {
-        question: "How do you say 'bonjour' in English?",
-        options: ["Hello", "Goodbye", "Good morning"],
+        question: "Comment dit-on 'chien' en anglais ?",
+        options: ["Dog", "Cat", "Horse"],
         correctAnswer: 0
     },
     {
-        question: "What is the plural form of 'child'?",
-        options: ["Children", "Childs", "Childer"],
-        correctAnswer: 0
+        question: "Que signifie 'book' ?",
+        options: ["Stylo", "Chaise", "Livre"],
+        correctAnswer: 2
     },
     {
-        question: "What is the past tense of 'go'?",
-        options: ["Went", "Goes", "Gone"],
-        correctAnswer: 0
-    },
-    {
-        question: "Which word means 'a large body of water'?",
-        options: ["Ocean", "Mountain", "River"],
-        correctAnswer: 0
-    },
-    {
-        question: "What does the expression 'break a leg' mean?",
-        options: ["Good luck", "Be careful", "Don't make noise"],
-        correctAnswer: 0
-    },
-    {
-        question: "Which one is a synonym of 'happy'?",
-        options: ["Sad", "Joyful", "Angry"],
+        question: "Quelle est la forme correcte du verbe 'to be' à la 3e personne du singulier ?",
+        options: ["Am", "Is", "Are"],
         correctAnswer: 1
     },
     {
-        question: "What is the opposite of 'up'?",
-        options: ["Down", "Right", "Left"],
+        question: "Que signifie 'apple' ?",
+        options: ["Orange", "Banane", "Pomme"],
+        correctAnswer: 2
+    },
+    {
+        question: "Comment dit-on 'merci' en anglais ?",
+        options: ["Sorry", "Please", "Thank you"],
+        correctAnswer: 2
+    },
+    {
+        question: "Quelle est la traduction de 'maison' ?",
+        options: ["Home", "Mouse", "Horse"],
         correctAnswer: 0
     },
     {
-        question: "Which word refers to 'a person who writes books'?",
-        options: ["Writer", "Reader", "Editor"],
-        correctAnswer: 0
-    },
-    {
-        question: "How do you say 'merci' in English?",
-        options: ["Thank you", "Please", "Sorry"],
-        correctAnswer: 0
-    },
-    {
-        question: "What is the capital of the United Kingdom?",
-        options: ["London", "New York", "Paris"],
-        correctAnswer: 0
-    },
-    {
-        question: "How do you ask someone's name in English?",
-        options: ["What is your name?", "How old are you?", "Where do you live?"],
-        correctAnswer: 0
-    },
-    {
-        question: "Which one is a correct sentence in English?",
-        options: ["She can sings well", "She sings well", "She well sings"],
+        question: "Quel est le pluriel de 'child' ?",
+        options: ["Childs", "Children", "Childes"],
         correctAnswer: 1
     },
     {
-        question: "What is the opposite of 'big'?",
-        options: ["Large", "Small", "Huge"],
+        question: "Comment demande-t-on l'heure ?",
+        options: ["What time is it?", "Where is the clock?", "When is the time?"],
+        correctAnswer: 0
+    },
+    {
+        question: "Que veut dire 'blue' ?",
+        options: ["Bleu", "Blanc", "Noir"],
+        correctAnswer: 0
+    },
+    {
+        question: "Que signifie 'I don't understand' ?",
+        options: ["Je comprends", "Je ne comprends pas", "Je suis d'accord"],
         correctAnswer: 1
     },
     {
-        question: "Which word means 'to move your body to music'?",
-        options: ["Sing", "Dance", "Draw"],
+        question: "Comment dit-on 'école' en anglais ?",
+        options: ["School", "Class", "Lesson"],
+        correctAnswer: 0
+    },
+    {
+        question: "Que signifie 'cold' ?",
+        options: ["Chaud", "Froid", "Pluie"],
         correctAnswer: 1
     },
     {
-        question: "What does 'to feel under the weather' mean?",
-        options: ["To feel sick", "To feel happy", "To feel sad"],
-        correctAnswer: 0
+        question: "Quel est le prétérit de 'go' ?",
+        options: ["Gone", "Goed", "Went"],
+        correctAnswer: 2
     },
     {
-        question: "Which verb is used to express possession?",
-        options: ["Have", "Do", "Go"],
-        correctAnswer: 0
-    },
-    {
-        question: "What is the plural of 'foot'?",
-        options: ["Feet", "Foots", "Feets"],
-        correctAnswer: 0
-    },
-    {
-        question: "Which word is an adjective?",
-        options: ["Quickly", "Quick", "Quickness"],
+        question: "Comment dit-on 'voiture' ?",
+        options: ["Bus", "Car", "Train"],
         correctAnswer: 1
     },
     {
-        question: "Which sentence is in the future tense?",
-        options: ["I am going to the park", "I go to the park", "I went to the park"],
-        correctAnswer: 0
+        question: "Que signifie 'Where are you from?'",
+        options: ["Tu vas où ?", "D'où viens-tu ?", "Où es-tu ?"],
+        correctAnswer: 1
     },
     {
-        question: "What does 'to make ends meet' mean?",
-        options: ["To manage financially", "To travel around the world", "To make friends"],
-        correctAnswer: 0
+        question: "Que veut dire 'She is happy' ?",
+        options: ["Elle est triste", "Elle est contente", "Elle est malade"],
+        correctAnswer: 1
+    },
+    {
+        question: "Comment traduit-on 'chat' ?",
+        options: ["Chat", "Cat", "Rat"],
+        correctAnswer: 1
+    },
+    {
+        question: "Quel est le comparatif de 'good' ?",
+        options: ["Gooder", "More good", "Better"],
+        correctAnswer: 2
+    },
+    {
+        question: "Que signifie 'to eat' ?",
+        options: ["Boire", "Manger", "Dormir"],
+        correctAnswer: 1
+    },
+    {
+        question: "Comment dit-on 'bonjour' en anglais ?",
+        options: ["Goodbye", "Good morning", "Good night"],
+        correctAnswer: 1
     }
 ];
+
 
 
   
