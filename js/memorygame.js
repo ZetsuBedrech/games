@@ -14,14 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/memorygame/imageA.jpg', 'images/memorygame/imageB.jpg', 'images/memorygame/imageC.jpg', 'images/memorygame/imageD.jpg',
         'images/memorygame/imageE.png', 'images/memorygame/imageF.jpg', 'images/memorygame/imageG.png', 'images/memorygame/imageH.png'
     ];
-    const cardsToCreate = [...cardImages, ...cardImages]; // Crée deux instances pour chaque image
+    const cardsToCreate = [...cardImages, ...cardImages];
 
-    // Mélange les cartes de manière aléatoire
+
     function shuffleArray(array) {
         return array.sort(() => Math.random() - 0.5);
     }
 
-    // Crée les éléments de carte et les ajoute au DOM
     function createCards() {
         shuffleArray(cardsToCreate);
         cardsToCreate.forEach(imageSrc => {
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('card');
             card.setAttribute('data-value', imageSrc);
 
-            // Crée un élément img pour la carte
             const img = document.createElement('img');
             img.setAttribute('src', imageSrc);
             img.setAttribute('alt', 'Image de la carte');
@@ -43,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Retourne une carte
     function flipCard() {
         if (gameOver || this.classList.contains('flipped') || flippedCards.length === 2) {
             return;
@@ -59,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Vérifie si les deux cartes retournées correspondent
     function checkForMatch() {
         const [firstCard, secondCard] = flippedCards;
         const firstImg = firstCard.querySelector('img');
@@ -73,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (matchedCards === cards.length) {
                 gameOver = true;
                 winner.textContent = 'Bravo, vous avez gagné !';
-                stopTimer(); // Arrête le timer lorsque le joueur gagne
+                stopTimer();
             }
 
             flippedCards = [];
@@ -101,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function stopTimer() {
-        clearInterval(timerInterval); // Arrête l'intervalle du timer
+        clearInterval(timerInterval);
     }
 
     // Réinitialise le jeu
@@ -111,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flippedCards = [];
         matchedCards = 0;
         gameOver = false;
-        stopTimer(); // Assurez-vous d'arrêter le timer lors d'une réinitialisation
+        stopTimer();
     }
 
     // Initialise le jeu
