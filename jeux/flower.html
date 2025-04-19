@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Doodle</title>
+    <link rel="stylesheet" href="../css/flower.css">
+</head>
+<body>
+    <a href="../index.html">Retour au menu</a>
+    <h1 id="flowername">Petite fleur</h1>
+    <!-- stats -->
+    <div id="stats" class="stats">
+        <p id="money">Argent : 0</p>
+        <p id="water">Eau : 0</p>
+        <p id="sun">Soleil : 0</p>
+    </div>
+
+    <!-- alert -->
+    <div id="alert" class="alert">
+        <p id="alertmessage"></p>
+        <p id="alertmessagesun"></p>
+    </div>
+
+    <!-- fleur -->
+    <img src="images/flower/fleur.png" alt="fleur">
+
+    <!-- buttons -->
+    <div class="buttons">
+        <button id="moneybutton">Argent</button>
+        <button id="waterbutton">Arroser</button>
+        <button id="sunbutton">Ouvrir la fenêtre</button>
+    </div>
+
+    <!-- autre buttons -->
+    <div class="otherbuttons">
+        <div class="dropdown">
+            <button>Option 🌸</button>
+            <div class="dropdown-content">
+              <button id="changename">Changer le nom</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button>Magasin 🌸</button>
+            <div class="dropdown-content">
+              <button id="buywater">pour l'eau</button>
+              <button id="buysun">pour le soleil</button>
+            </div>
+        </div>
+        <button id="inventory">Inventaire</button>
+    <div id="inventorycontent" class="inventorycontent">
+        <p id="inventorymessage"></p>
+    </div>
+    </div>
+
+    <script src="../js/flower.js"></script>
+</body>
+</html>
+
+
+<!-- ajout a faire -->
+ <!--
+succès
+quiz botanique
+encyclopédie des plantes
+ mauvaise herbes -> 0 to 100 
+                 -> un bouton pour enlever les mauvaises herbes
+                 -> il faut acheter un objet pour le faire
+
+ evolution de la fleur -> la fleur possède plusieurs stades
+                       -> Augmente avec le temps de jeu et les soins
+
+ insectes -> il faut un objet pour les enlever
+          -> apparition aléatoire 
+          -> message quand ils apparaissent
+
+ personnalisations -> personnaliser la fleur
+                    -> changer la fleur
+                    -> modifier le fond de la page
+
+ magasins -> acheter des objets pour la fleur
+          -> objet pour diminuer l'apparition des insectes / mauvaises herbes
+
+un job -> pour gagner de l'argent automatiquement
+  -->
