@@ -20,6 +20,7 @@
     <div id="alert" class="alert">
         <p id="alertmessage"></p>
         <p id="alertmessagesun"></p>
+        <p id="alertinsect"></p>
     </div>
 
     <!-- fleur -->
@@ -38,13 +39,15 @@
             <button>Option 🌸</button>
             <div class="dropdown-content">
               <button id="changename">Changer le nom</button>
+              <button id="succes">Succès</button>
+              <button id="minigame">Mini-jeux</button>
             </div>
         </div>
         <div class="dropdown">
             <button>Magasin 🌸</button>
             <div class="dropdown-content">
-              <button id="buywater">pour l'eau</button>
-              <button id="buysun">pour le soleil</button>
+              <button id="buywater">pour l'eau (20€)</button>
+              <button id="buysun">pour le soleil (20€)</button>
             </div>
         </div>
         <button id="inventory">Inventaire</button>
@@ -52,34 +55,58 @@
         <p id="inventorymessage"></p>
     </div>
     </div>
+    <div id="successMenu">
+        <h2>Succès 
+            <span id="closeSuccessMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
+        </h2>
+        <ul id="successList"></ul>
+    </div>
+    <div id="minigames">
+        <h2>Mini-jeux</h2>
+        <button id="quiz">Quiz botanique</button>
+    </div>
+
+    <div id="quizWindow">
+        <h2 id="question"></h2>
+        <div class="answers"></div>
+        <p id="result"></p>
+        <p class="rightanswer">Nombre de bonnes réponses : 0</p>
+        <p class="falseanswer">Nombre de mauvaises réponses : 0</p>
+    </div>
 
     <script src="../js/flower.js"></script>
+    <script src="../js/quiz/quizbotanique.js"></script>
 </body>
 </html>
 
 
 <!-- ajout a faire -->
  <!--
+Barre de croissance de la fleur avec différents stades -> graines / pousse / tige / bourgeon / fleur
 succès
 quiz botanique
 encyclopédie des plantes
- mauvaise herbes -> 0 to 100 
-                 -> un bouton pour enlever les mauvaises herbes
-                 -> il faut acheter un objet pour le faire
+mauvaise herbes -> 0 to 100 
+                -> un bouton pour enlever les mauvaises herbes
+                -> il faut acheter un objet pour le faire
 
- evolution de la fleur -> la fleur possède plusieurs stades
-                       -> Augmente avec le temps de jeu et les soins
+evolution de la fleur -> la fleur possède plusieurs stades
+                    -> Augmente avec le temps de jeu et les soins
 
- insectes -> il faut un objet pour les enlever
-          -> apparition aléatoire 
-          -> message quand ils apparaissent
+mini jeux -> pour gagner de l'argent
 
- personnalisations -> personnaliser la fleur
+Interaction sociales avec la fleur
+
+Journal de bord
+
+Decor personalisable -> pot , fond du jardin , météo etc
+
+ personnalisations -> personnaliser la fleur -> les couleurs , formes tailles etc
                     -> changer la fleur
                     -> modifier le fond de la page
 
  magasins -> acheter des objets pour la fleur
-          -> objet pour diminuer l'apparition des insectes / mauvaises herbes
+          -> objet pour diminuer l'apparition des mauvaises herbes
 
 un job -> pour gagner de l'argent automatiquement
   -->

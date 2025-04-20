@@ -13,6 +13,107 @@ changeName.addEventListener("click", () => {
 });
 
 
+// succes
+const success = document.getElementById("succes");
+const succesList = [
+    {
+        id: "firstClick",
+        title: "Premier Insecte !",
+        description: "Clique sur ton premier insecte.",
+        unlocked: false
+    },
+    {
+        id: "richBoy",
+        title: "Riche !",
+        description: "Atteins 1000 Argent.",
+        unlocked: false
+    },
+    {
+        id: "collector",
+        title: "Collectionneur",
+        description: "Clique sur 10 insectes.",
+        unlocked: false
+    },
+    {
+        id: "waterboy",
+        title: "Hydro Pro",
+        description: "Achète 50 arrosoirs.",
+        unlocked: false
+    },
+    {
+        id: "sunboy",
+        title: "Maître Soleil",
+        description: "Achète 50 parasols.",
+        unlocked: false
+    },
+];
+
+function unlockSuccess(id) {
+    const success = succesList.find(s => s.id === id);
+    if (success && !success.unlocked) {
+        success.unlocked = true;
+        alert("🎉 Succès débloqué : " + success.title + " - " + success.description);
+        // tu peux aussi afficher ça dans une boîte stylée ou l’ajouter à une liste HTML
+        saveSuccesses();
+    }
+}
+
+function saveSuccesses() {
+    const unlockedIds = succesList.filter(s => s.unlocked).map(s => s.id);
+    localStorage.setItem("unlockedSuccesses", JSON.stringify(unlockedIds));
+}
+
+const savedSuccesses = JSON.parse(localStorage.getItem("unlockedSuccesses")) || [];
+succesList.forEach(success => {
+    if (savedSuccesses.includes(success.id)) {
+        success.unlocked = true;
+    }
+});
+
+
+const successButton = document.getElementById("succes");
+const successMenu = document.getElementById("successMenu");
+const successListEl = document.getElementById("successList");
+
+successButton.addEventListener("click", () => {
+    successListEl.innerHTML = "";
+
+    succesList.forEach(success => {
+        const li = document.createElement("li");
+        li.textContent = (success.unlocked ? "✅ " : "🔒 ") + success.title + " - " + success.description;
+        successListEl.appendChild(li);
+    });
+
+    successMenu.style.display = successMenu.style.display === "none" ? "block" : "none";
+});
+
+// Sélectionne la croix pour fermer le menu des succès
+const closeSuccessMenuButton = document.getElementById("closeSuccessMenu");
+
+// Ajoute un événement pour fermer le menu des succès
+closeSuccessMenuButton.addEventListener("click", () => {
+    successMenu.style.display = "none"; // Masque la div des succès
+});
+
+
+// mini jeux
+const miniGame = document.getElementById("minigame");
+const miniGamesWindow = document.getElementById("minigames");
+
+miniGame.addEventListener("click", () => {
+    miniGamesWindow.style.display = miniGamesWindow.style.display === "none" ? "block" : "none";
+});
+
+const quiz = document.getElementById("quiz");
+const quizWindow = document.getElementById("quizWindow");
+
+quiz.addEventListener("click", () => {
+    quizWindow.style.display = quizWindow.style.display === "none" ? "block" : "none";
+});
+
+
+
+
 
 // inventaire
 const inventory = document.getElementById("inventorycontent");
@@ -32,6 +133,10 @@ const updateInventory = () => {
             itemCounts["Arrosoir"] += item.quantity;
         }
     }
+    // Verifie si l'utilisateur a 50 arrosoirs pour le succès
+    if (itemCounts["Arrosoir"] >= 50) {
+        unlockSuccess("waterboy");
+    }
 
     // Compter les quantités des parasols
     for (let i = 0; i < inventoryItems.length; i++) {
@@ -42,6 +147,10 @@ const updateInventory = () => {
             }
             itemCounts["Parasol"] += item.quantity;
         }
+    }
+    // Verifie si l'utilisateur a 50 parasols pour le succès
+    if (itemCounts["Parasol"] >= 50) {
+        unlockSuccess("sunboy");
     }
 
     // Afficher l'inventaire
@@ -130,6 +239,7 @@ moneyButton.addEventListener("click", () => {
     currentMoney += 1;
     money.textContent = "Argent : " + currentMoney;
     localStorage.setItem("money", currentMoney);
+    updateStats();
 });
 
 // l'eau
@@ -223,10 +333,87 @@ document.addEventListener("click", function (event) {
 });
 
 
+// Insectes bonus
+const body = document.body;
+const alertInsect = document.getElementById("alertinsect");
+let insectClickCount = parseInt(localStorage.getItem("insectClickCount")) || 0;
+
+// Bonus pour chaque insecte
+const insectes = [
+    {
+        src: "../jeux/images/flower/gendarme.png",
+        bonusType: "water",
+        bonusAmount: 152,
+    },
+    {
+        src: "../jeux/images/flower/guepe.png",
+        bonusType: "sun",
+        bonusAmount: 195,
+    },
+];
 
 
-// Lance le timer
-timerInterval = setInterval(updateTimer, 1000);
+// Met à jour les stats (à appeler après chaque changement)
+function updateStats() {
+    money.textContent = "Argent : " + currentMoney;
+    if (currentMoney >= 1000) {
+        unlockSuccess("richBoy");
+    }
+}
+
+// Apparition aléatoire d'un insecte toutes les 10-20 secondes
+setInterval(() => {
+    const insect = insectes[Math.floor(Math.random() * insectes.length)];
+
+    const img = document.createElement("img");
+    img.src = insect.src;
+    img.classList.add("insect");
+    img.style.position = "absolute";
+    img.style.width = "50px";
+    img.style.cursor = "pointer";
+
+    // Position aléatoire
+    img.style.left = Math.floor(Math.random() * window.innerWidth * 0.8) + "px";
+    img.style.top = Math.floor(Math.random() * window.innerHeight * 0.6 + 100) + "px";
+
+    // Quand on clique
+    img.addEventListener("click", () => {
+        if (insect.bonusType === "water") {
+            currentMoney += insect.bonusAmount;
+            console.log("Vous avez gagné " + insect.bonusAmount + " Argent !"); // on affiche dans la console
+            alertInsect.style.display = "block"; // on affiche le message
+            alertInsect.textContent = "Vous avez Gagné " + insect.bonusAmount + " Argent !"; // on met le message
+            setTimeout(() => {
+                alertInsect.style.display = "none";
+            }, 5000); // le message disparait après 5 secondes
+        } else if (insect.bonusType === "sun") {
+            currentMoney += insect.bonusAmount;
+            console.log("Vous avez gagné " + insect.bonusAmount + " Argent !");
+            alertInsect.style.display = "block";
+            alertInsect.textContent = "Vous avez Gagné " + insect.bonusAmount + " Argent !";
+            setTimeout(() => {
+                alertInsect.style.display = "none";
+            }, 5000);
+        }
+        updateStats();
+        insectClickCount++;
+        localStorage.setItem("insectClickCount", insectClickCount);
+        if (insectClickCount === 1) {
+            unlockSuccess("firstClick");
+        }
+        if (insectClickCount === 10) {
+            unlockSuccess("collector");
+        }
+        console.log(insectClickCount);
+        img.remove();
+    });
+    body.appendChild(img);
+
+    // L'insecte disparaît après 5 secondes s'il n’est pas cliqué
+    setTimeout(() => {
+        img.remove();
+    }, 5000);
+}, Math.random() * 100 + 10000);
 
 
 // Affichage initial
