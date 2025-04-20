@@ -106,15 +106,35 @@ h1 {
     border-radius:5px;
 }
 
-img{
-    height:25vh;
-    width:25vh;
-    margin-bottom:25px;
-    margin-top:15px;
-    background-color:white;
-    border:solid black 1px;
-    border-radius:5px;
+#fleur {
+    position: relative; /* Ajoute cette position pour que la pluie soit positionnée par rapport à ce conteneur */
+    width: 25vh;
+    height: 25vh;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    background-color: white;
+    border: solid black 1px;
+    border-radius: 5px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.9);
+}
+
+.fleur {
+    position: absolute; /* Permet de superposer l'image de la fleur */
+    top: 0;
+    left: 0;
+    width: 100%; /* Assure que la fleur couvre tout le conteneur */
+    height: 100%; /* Assure que la fleur couvre tout le conteneur */
+}
+
+#pluieeffect, #etoileeffect {
+    display:none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Prend toute la largeur du conteneur */
+    height: 100%; /* Prend toute la hauteur du conteneur */
+    pointer-events: none;
+    z-index: 2; /* Pluie au-dessus de la fleur */
 }
 
 .dropdown {
@@ -202,6 +222,27 @@ img{
 
 #minigames{
     display:none;
+    margin:10px;
+}
+
+#minigames button{
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #8295c7;
+    border: none;
+    border-radius: 6px;
+    color:white;
+    cursor: pointer;
+}
+  
+#minigames button:hover {
+    background-color: #2B3564;
+}
+
+#minigames.show {
+    display: block;
 }
 
 #quizWindow{
@@ -240,4 +281,23 @@ img{
 
 #quizWindow button:active{
     background-color:grey;
+}
+
+#growthBar {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #e0f7fa;
+    appearance: none;
+}
+
+#growthBar::-webkit-progress-bar {
+    background-color: #26dbf3;
+    border-radius: 10px;
+}
+
+#growthBar::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 10px;
 }

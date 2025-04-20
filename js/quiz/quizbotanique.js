@@ -118,4 +118,5 @@ function checkAnswer(userAnswer) {
     }, 1000);
 }
 
+
 loadQuestion();

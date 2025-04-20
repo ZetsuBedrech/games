@@ -13,6 +13,42 @@ changeName.addEventListener("click", () => {
 });
 
 
+// effets
+const myEffects = document.getElementById("myeffects");
+const myEffectsList = JSON.parse(localStorage.getItem('myEffectsList')) || []; // Récupère la liste des effets depuis localStorage ou initialisation
+const myEffectsListEl = document.getElementById("effectslist");
+
+function afficherEffets() {
+    myEffectsListEl.innerHTML = ""; // Vider l'affichage des effets existants
+
+    // Ajouter chaque effet à la liste d'effets
+    myEffectsList.forEach((effect, index) => {
+        const li = document.createElement("li");
+        li.textContent = effect.charAt(0).toUpperCase() + effect.slice(1); 
+        li.addEventListener("click", () => {
+            if (effect === "pluie") {
+                if (pluieActive) {
+                    desactiverPluie();
+                } else {
+                    pluieActive = true;
+                    pluieEffect.style.display = 'block';
+                    localStorage.setItem('pluieActive', 'true');
+                }
+            }
+            if (effect === "etoile") {
+                if (etoileActive) {
+                    desactiverEtoile();
+                } else {
+                    etoileActive = true;
+                    etoileEffect.style.display = 'block';
+                    localStorage.setItem('etoileActive', 'true');
+                }
+            }
+        });
+        myEffectsListEl.appendChild(li);
+    });
+}
+
 // succes
 const success = document.getElementById("succes");
 const succesList = [
@@ -46,6 +82,12 @@ const succesList = [
         description: "Achète 50 parasols.",
         unlocked: false
     },
+    {
+        id: "fullGrown",
+        title: "Plante pleine",
+        description: "La plante est pleine.",
+        unlocked: false
+    }
 ];
 
 function unlockSuccess(id) {
@@ -110,7 +152,13 @@ const quizWindow = document.getElementById("quizWindow");
 quiz.addEventListener("click", () => {
     quizWindow.style.display = quizWindow.style.display === "none" ? "block" : "none";
 });
+// Sélectionne la croix pour fermer le menu des succès
+const closeQuizMenuButton = document.getElementById("closeQuizMenu");
 
+// Ajoute un événement pour fermer le menu des succès
+closeQuizMenuButton.addEventListener("click", () => {
+    quizWindow.style.display = "none"; // Masque la div des succès
+});
 
 
 
@@ -228,6 +276,105 @@ document.getElementById("buysun").addEventListener("click", () => {
         alert("Pas assez d'argent !");
     }
 });
+
+let pluieActive = false; // Pour vérifier si la pluie est activée
+
+// Sélectionner les éléments du DOM
+const pluieButton = document.getElementById('pluie');
+const moneyElement = document.getElementById('money');
+const pluieEffect = document.getElementById('pluieeffect');
+
+
+// Vérifier l'état de la pluie au chargement
+if (localStorage.getItem('pluieActive') === 'true') {
+    pluieActive = true;
+    pluieEffect.style.display = 'block';
+}
+
+// Fonction pour activer la pluie
+function activerPluie() {
+    console.log("Argent actuel : " + currentMoney);  // Vérifie la valeur de money
+    if (!pluieActive && currentMoney >= 50) {
+        pluieActive = true; // Activer la pluie
+        currentMoney -= 50; // Réduire l'argent
+        moneyElement.textContent = `Argent : ${currentMoney}`; // Mettre à jour l'affichage de l'argent
+        pluieEffect.style.display = 'block';
+
+     // Si la pluie n'est pas déjà dans la liste, on l'ajoute
+    if (!myEffectsList.includes("pluie")) {
+        myEffectsList.push("pluie");
+
+        // Sauvegarder la liste dans le localStorage
+        localStorage.setItem('myEffectsList', JSON.stringify(myEffectsList));
+        
+        // Ajouter la pluie à l'affichage des effets
+        afficherEffets();
+    }
+        
+        // Sauvegarder l'état dans localStorage
+        localStorage.setItem('pluieActive', 'true');
+
+    }
+}
+// Fonction pour arrêter la pluie (si tu as besoin de la désactiver à un moment donné)
+function desactiverPluie() {
+    pluieActive = false;
+    pluieEffect.style.display = 'none';
+    localStorage.setItem('pluieActive', 'false');
+}
+
+
+// Ajouter un écouteur d'événement sur le bouton de pluie
+pluieButton.addEventListener('click', activerPluie);
+
+let etoileActive = false; // Pour vérifier si l'étoile est activée
+
+// Sélectionner les éléments du DOM
+const etoileButton = document.getElementById('etoile');
+const etoileEffect = document.getElementById('etoileeffect');
+
+// Vérifier l'état de l'étoile au chargement
+if (localStorage.getItem('etoileActive') === 'true') {
+    etoileActive = true;
+    etoileEffect.style.display = 'block';
+}
+
+// Fonction pour activer l'étoile
+function activerEtoile() {
+    console.log("Argent actuel : " + currentMoney);  // Vérifie la valeur de money
+    if (!etoileActive && currentMoney >= 30) {
+        etoileActive = true; // Activer l'étoile
+        currentMoney -= 30; // Réduire l'argent
+        moneyElement.textContent = `Argent : ${currentMoney}`; // Mettre à jour l'affichage de l'argent
+        etoileEffect.style.display = 'block';
+
+        // Ajouter l'étoile à la liste des effets si elle n'y est pas déjà
+        if (!myEffectsList.includes("etoile")) {
+            myEffectsList.push("etoile");
+
+            // Sauvegarder la liste des effets dans localStorage
+            localStorage.setItem('myEffectsList', JSON.stringify(myEffectsList));
+
+            // Afficher les effets mis à jour
+            afficherEffets();
+        }
+
+        // Sauvegarder l'état dans localStorage
+        localStorage.setItem('etoileActive', 'true');
+    }
+}
+
+// Fonction pour désactiver l'étoile
+function desactiverEtoile() {
+    etoileActive = false;
+    etoileEffect.style.display = 'none';
+    localStorage.setItem('etoileActive', 'false');
+}
+
+// Ajouter un écouteur d'événement sur le bouton d'étoile
+etoileButton.addEventListener('click', activerEtoile);
+
+
 
 // Mettre à jour l'argent
 const moneyButton = document.getElementById("moneybutton");
@@ -415,7 +562,61 @@ setInterval(() => {
     }, 5000);
 }, Math.random() * 100 + 10000);
 
+// Variables pour suivre l'état de la plante
+let croissance = localStorage.getItem('croissance') ? parseInt(localStorage.getItem('croissance')) : 0; // Charger la croissance depuis localStorage ou la définir à 0
+let croissanceMax = 100; // Maximum de croissance
+let croissanceMin = 0; // Minimum de croissance
 
+
+
+// Sélectionner la barre de progression
+const growthBar = document.getElementById('growthBar');
+
+// Fonction pour augmenter la croissance
+// Fonction pour augmenter la croissance
+function augmenterCroissance(valeur) {
+    if (waterLevel >= 50 && sunLevel >= 50) {
+        croissance += valeur; // Ajouter de la croissance
+        if (croissance > croissanceMax) {
+            croissance = croissanceMax; // Plafonner la croissance à 100
+        }
+        growthBar.value = croissance; // Mettre à jour la barre
+        localStorage.setItem('croissance', croissance); // Sauvegarder la nouvelle valeur de croissance
+    }
+}
+
+// Fonction pour diminuer la croissance
+function diminuerCroissance(valeur) {
+    if (waterLevel < 15 || sunLevel < 15) {
+        croissance -= valeur; // Diminuer la croissance
+        if (croissance < croissanceMin) {
+            croissance = croissanceMin; // Ne pas descendre sous 0
+        }
+        growthBar.value = croissance; // Mettre à jour la barre
+        localStorage.setItem('croissance', croissance); // Sauvegarder la nouvelle valeur de croissance
+    }
+}
+
+// Fonction pour vérifier les niveaux et mettre à jour la croissance
+function verifierCroissance() {
+    if (waterLevel >= 50 && sunLevel >= 50) {
+        augmenterCroissance(0.2); // Augmenter la croissance chaque seconde si l'eau et le soleil sont suffisants
+    } else {
+        diminuerCroissance(0.2); // Diminuer la croissance si l'un des deux est insuffisant
+    }
+}
+// Démarrer la vérification continue de la croissance (par exemple, toutes les secondes)
+setInterval(verifierCroissance, 1000); // Vérifier toutes les 1000 millisecondes (1 seconde)
+
+// success si la plante atteint sa pleine croissance
+if ( croissance = 100) {
+    unlockSuccess("fullGrown");
+}
+
+// Afficher les effets à chaque chargement de la page
+window.onload = function() {
+    afficherEffets();
+};
 // Affichage initial
 updateFlowerStatus();
 updateSunStatus();

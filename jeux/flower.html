@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Doodle</title>
+    <title>Petite Fleur</title>
     <link rel="stylesheet" href="../css/flower.css">
 </head>
 <body>
@@ -24,7 +24,11 @@
     </div>
 
     <!-- fleur -->
-    <img src="images/flower/fleur.png" alt="fleur">
+     <div id="fleur">
+         <img class="fleur" src="images/flower/fleur.png" alt="fleur">
+         <img id="pluieeffect" class="pluie" src="images/flower/pluie.gif" alt="pluie">
+         <img id="etoileeffect" class="etoile" src="images/flower/etoiles.gif" alt="etoile">
+     </div>
 
     <!-- buttons -->
     <div class="buttons">
@@ -41,13 +45,17 @@
               <button id="changename">Changer le nom</button>
               <button id="succes">Succès</button>
               <button id="minigame">Mini-jeux</button>
+              <button id="myeffects">Effets</button>
             </div>
         </div>
         <div class="dropdown">
             <button>Magasin 🌸</button>
             <div class="dropdown-content">
-              <button id="buywater">pour l'eau (20€)</button>
-              <button id="buysun">pour le soleil (20€)</button>
+              <button id="buywater">Arrosoir (20€)</button>
+              <button id="buysun">Parasol (20€)</button>
+              <h3>Effets visuel</h3>
+              <button id="pluie">Pluie (50€)</button>
+              <button id="etoile">Etoiles (50€)</button>
             </div>
         </div>
         <button id="inventory">Inventaire</button>
@@ -65,13 +73,24 @@
         <h2>Mini-jeux</h2>
         <button id="quiz">Quiz botanique</button>
     </div>
+    <div id="myeffects">
+        <h2>Effets
+            <span id="closeEffectsMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
+        </h2>
+        <ul id="effectslist"></ul>
+    </div>
 
     <div id="quizWindow">
+        <span id="closeQuizMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
         <h2 id="question"></h2>
         <div class="answers"></div>
         <p id="result"></p>
         <p class="rightanswer">Nombre de bonnes réponses : 0</p>
         <p class="falseanswer">Nombre de mauvaises réponses : 0</p>
+    </div>
+    <div id="croissance">
+        <p>Croissance de la plante :</p>
+        <progress id="growthBar" value="0" max="100"></progress>
     </div>
 
     <script src="../js/flower.js"></script>
@@ -107,6 +126,9 @@ Decor personalisable -> pot , fond du jardin , météo etc
 
  magasins -> acheter des objets pour la fleur
           -> objet pour diminuer l'apparition des mauvaises herbes
+          -> arrosage automatique -> 200 -> +5 toute les 5 seconds -> achat limiter
+          ->parasol automatique -> 200 -> +5 toute les 5 seconds -> achat limiter
 
 un job -> pour gagner de l'argent automatiquement
+
   -->
