@@ -14,6 +14,11 @@ changeName.addEventListener("click", () => {
 
 
 // effets
+const effectButton = document.getElementById("myeffectsoption");
+
+effectButton.addEventListener("click", () => {
+    myEffects.style.display = myEffects.style.display === "none" ? "block" : "none";
+});
 const myEffects = document.getElementById("myeffects");
 const myEffectsList = JSON.parse(localStorage.getItem('myEffectsList')) || []; // Récupère la liste des effets depuis localStorage ou initialisation
 const myEffectsListEl = document.getElementById("effectslist");
@@ -48,6 +53,30 @@ function afficherEffets() {
         myEffectsListEl.appendChild(li);
     });
 }
+
+// personnalisation
+const personnalisationButton = document.getElementById("personnalisation");
+const personnalisationMenu = document.getElementById("personnalisationmenu");
+
+personnalisationButton.addEventListener("click", () => {
+    personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
+});
+
+const background = document.getElementById("background");
+
+
+
+
+
+// Sélectionne la croix pour fermer le menu des succès
+const closeEffectMenuButton = document.getElementById("closeEffectsMenu");
+const effectMenu = document.getElementById("myeffects");
+
+// Ajoute un événement pour fermer le menu des succès
+closeEffectMenuButton.addEventListener("click", () => {
+    effectMenu.style.display = "none"; // Masque la div des succès
+});
+
 
 // succes
 const success = document.getElementById("succes");
@@ -87,7 +116,19 @@ const succesList = [
         title: "Plante pleine",
         description: "La plante est pleine.",
         unlocked: false
-    }
+    },
+    {
+        id: "bigwaterboy",
+        title: "Roi de l'eau",
+        description: "Achète 50 arrosoirs automatiques.",
+        unlocked: false
+    },
+    {
+        id: "bigsunboy",
+        title: "Roi Soleil",
+        description: "Achète 50 parasols automatiques.",
+        unlocked: false
+    },
 ];
 
 function unlockSuccess(id) {
@@ -201,6 +242,40 @@ const updateInventory = () => {
         unlockSuccess("sunboy");
     }
 
+    // Compter les quantités des arrosoirs automatique
+    for (let i = 0; i < inventoryItems.length; i++) {
+        const item = inventoryItems[i];
+        if (item.name === "Arrosoir Automatique") {
+            if (!itemCounts["Arrosoir Automatique"]) {
+                itemCounts["Arrosoir Automatique"] = 0;
+            }
+            itemCounts["Arrosoir Automatique"] += item.quantity;
+        }
+    }
+    // Verifie si l'utilisateur a 50 arrosoirs automatique pour le succès
+    if (itemCounts["Arrosoir Automatique"] >= 50) {
+        unlockSuccess("bigwaterboy");
+    }
+
+    // Compter les quantités des parasols automatique
+    for (let i = 0; i < inventoryItems.length; i++) {
+        const item = inventoryItems[i];
+        if (item.name === "Parasol Automatique") {
+            if (!itemCounts["Parasol Automatique"]) {
+                itemCounts["Parasol Automatique"] = 0;
+            }
+            itemCounts["Parasol Automatique"] += item.quantity;
+        }
+    }
+    // Verifie si l'utilisateur a 50 parasols automatique pour le succès
+    if (itemCounts["Parasol Automatique"] >= 50) {
+        unlockSuccess("bigsunboy");
+    }
+
+
+
+
+
     // Afficher l'inventaire
     for (const itemName in itemCounts) {
         const itemElement = document.createElement("div");
@@ -219,6 +294,7 @@ document.getElementById("inventory").addEventListener("click", () => {
 });
 
 // Fonction pour calculer les bonus des objets
+// bonus de l'arrosoir
 const ArrosoirBonus = () => {
     const numberOfWateringCans = inventoryItems
         .filter(item => item.name === "Arrosoir") 
@@ -227,6 +303,7 @@ const ArrosoirBonus = () => {
     return bonus;
 };
 
+// bonus du parasol
 const ParasolBonus = () => {
     const numberOfParasols = inventoryItems
         .filter(item => item.name === "Parasol") 
@@ -234,6 +311,26 @@ const ParasolBonus = () => {
     const bonus = numberOfParasols * 50; // Calculer le bonus
     return bonus;
 };
+
+// bonus du parasol automatique
+const ParasolAutomatiqueBonus = () => {
+    const numberOfParasolsAutomatique = inventoryItems
+        .filter(item => item.name === "Parasol Automatique") 
+        .reduce((total, item) => total + item.quantity, 0); 
+    const bonus = numberOfParasolsAutomatique * 50; // Calculer le bonus
+    return bonus;
+};
+
+// bonus de l'arrosoir automatique
+const ArrosoirAutomatiqueBonus = () => {
+    const numberOfWateringCansAutomatique = inventoryItems
+        .filter(item => item.name === "Arrosoir Automatique") 
+        .reduce((total, item) => total + item.quantity, 0); 
+    const bonus = numberOfWateringCansAutomatique * 50; // Calculer le bonus
+    return bonus;
+};
+
+
 
 // Acheter un arrosoir
 document.getElementById("buywater").addEventListener("click", () => {
@@ -256,6 +353,25 @@ document.getElementById("buywater").addEventListener("click", () => {
     }
 });
 
+// Acheter un arrosoir automatique
+document.getElementById("arrosoirautomatique").addEventListener("click", () => {
+    if (currentMoney >= 200) {
+        currentMoney -= 200;
+        inventoryItems.push({ name: "Arrosoir Automatique", quantity: 1 });
+        money.textContent = "Argent : " + currentMoney;
+        localStorage.setItem("money", currentMoney);
+        localStorage.setItem("inventoryItems", JSON.stringify(inventoryItems));
+        updateInventory();
+        restartIntervals(); // Redémarrer les intervalles aprés l'achat d'un objet
+    } else {
+        alert("Pas assez d'argent !");
+    }
+});
+
+
+
+
+
 // Acheter un Parasol
 document.getElementById("buysun").addEventListener("click", () => {
     if (currentMoney >= 20) {
@@ -277,6 +393,26 @@ document.getElementById("buysun").addEventListener("click", () => {
     }
 });
 
+// acheter un parasol automatique
+document.getElementById("parasolautomatique").addEventListener("click", () => {
+    if (currentMoney >= 200) {
+        currentMoney -= 200;
+        inventoryItems.push({ name: "Parasol Automatique", quantity: 1 });
+        money.textContent = "Argent : " + currentMoney;
+        localStorage.setItem("money", currentMoney);
+        localStorage.setItem("inventoryItems", JSON.stringify(inventoryItems));
+        updateInventory();
+        restartIntervals(); // Redémarrer les intervalles aprés l'achat d'un objet
+    } else {
+        alert("Pas assez d'argent !");
+    }
+})
+
+
+
+
+
+
 let pluieActive = false; // Pour vérifier si la pluie est activée
 
 // Sélectionner les éléments du DOM
@@ -289,6 +425,7 @@ const pluieEffect = document.getElementById('pluieeffect');
 if (localStorage.getItem('pluieActive') === 'true') {
     pluieActive = true;
     pluieEffect.style.display = 'block';
+    pluieButton.style.display = 'none';
 }
 
 // Fonction pour activer la pluie
@@ -337,6 +474,7 @@ const etoileEffect = document.getElementById('etoileeffect');
 if (localStorage.getItem('etoileActive') === 'true') {
     etoileActive = true;
     etoileEffect.style.display = 'block';
+    etoileButton.style.display = 'none';
 }
 
 // Fonction pour activer l'étoile
@@ -420,7 +558,50 @@ waterButton.addEventListener("click", () => {
     updateFlowerStatus();
 });
 
+let autoWaterInterval;
+
+const startAutoWatering = () => {
+    if (autoWaterInterval) clearInterval(autoWaterInterval); // On évite les doublons
+
+    autoWaterInterval = setInterval(() => {
+        const numberOfArrosoirsAuto = inventoryItems
+            .filter(item => item.name === "Arrosoir Automatique")
+            .reduce((total, item) => total + item.quantity, 0);
+
+        const bonusWater = numberOfArrosoirsAuto * 5;
+
+        if (bonusWater > 0) {
+            waterLevel = Math.min(100, waterLevel + bonusWater);
+            updateFlowerStatus();
+            console.log(`💧 +${bonusWater} eau (arrosage auto)`);
+        }
+    }, 50000); // toutes les 10 secondes
+};
+
+
 startWaterInterval(); // Start the water interval
+
+// ☂️ Bonus de soleil des parasols automatiques
+let parasolSunInterval;
+
+const startParasolAutoSun = () => {
+    if (parasolSunInterval) clearInterval(parasolSunInterval);
+
+    parasolSunInterval = setInterval(() => {
+        const numberOfParasolsAuto = inventoryItems
+            .filter(item => item.name === "Parasol Automatique")
+            .reduce((total, item) => total + item.quantity, 0);
+
+        const bonusSun = numberOfParasolsAuto * 5;
+
+        if (bonusSun > 0) {
+            sunLevel = Math.min(100, sunLevel + bonusSun);
+            updateSunStatus();
+            console.log(`☀️ +${bonusSun} soleil (parasol auto)`);
+        }
+    }, 50000); // toutes les 10 secondes
+};
+
 
 // soleil
 const sunButton = document.getElementById("sunbutton");
@@ -454,6 +635,9 @@ sunButton.addEventListener("click", () => {
 });
 
 startSunInterval(); // Start the sun interval
+
+
+
 
 // Fonction pour redémarrer les intervalles
 const restartIntervals = () => {
@@ -620,3 +804,5 @@ window.onload = function() {
 // Affichage initial
 updateFlowerStatus();
 updateSunStatus();
+startAutoWatering();
+startParasolAutoSun();
