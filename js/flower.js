@@ -55,14 +55,14 @@ function afficherEffets() {
 }
 
 // personnalisation
-const personnalisationButton = document.getElementById("personnalisation");
-const personnalisationMenu = document.getElementById("personnalisationmenu");
+// const personnalisationButton = document.getElementById("personnalisation");
+// const personnalisationMenu = document.getElementById("personnalisationmenu");
 
-personnalisationButton.addEventListener("click", () => {
-    personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
-});
+// personnalisationButton.addEventListener("click", () => {
+//     personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
+// });
 
-const background = document.getElementById("background");
+// const background = document.getElementById("background");
 
 
 
