@@ -54,18 +54,135 @@ function afficherEffets() {
     });
 }
 
+const blocNote = document.getElementById("blocnote");
+const blocNoteWindow = document.getElementById("blocnotewindow");
+const blocNoteInput = document.getElementById("blocnoteinput");
+const blocNoteTextArea = document.getElementById("blocnoteTextArea");
+
+// Ouvrir ou fermer la fenêtre du bloc-note
+blocNote.addEventListener("click", () => {
+    blocNoteWindow.style.display = blocNoteWindow.style.display === "none" ? "block" : "none";
+});
+
+// Fermer le bloc-note avec le "x"
+const closeblocNote = document.getElementById("closeBlocNote");
+
+closeblocNote.addEventListener("click", () => {
+    blocNoteWindow.style.display = "none";
+});
+
+// Charger les données depuis le localStorage lorsque la page se charge
+document.addEventListener("DOMContentLoaded", () => {
+    const savedNote = localStorage.getItem("blocNoteData");
+    if (savedNote) {
+        blocNoteTextArea.value = savedNote;  // Remplir la zone de texte avec la note sauvegardée
+    }
+});
+
+// Sauvegarder les données dans le localStorage chaque fois qu'on tape
+blocNoteTextArea.addEventListener("input", () => {
+    localStorage.setItem("blocNoteData", blocNoteTextArea.value);  // Sauvegarder la note
+});
+
 // personnalisation
-// const personnalisationButton = document.getElementById("personnalisation");
-// const personnalisationMenu = document.getElementById("personnalisationmenu");
+const personnalisationButton = document.getElementById("personnalisation");
+const personnalisationMenu = document.getElementById("personnalisationmenu");
 
-// personnalisationButton.addEventListener("click", () => {
-//     personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
-// });
-
-// const background = document.getElementById("background");
+personnalisationButton.addEventListener("click", () => {
+    personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
+});
 
 
 
+// changer la couleur de fond de la fleur 
+const colorOptions = document.querySelectorAll(".colorOption");
+const fleurBackgroundColor = document.getElementById("fleur");
+
+// Appliquer la couleur sauvegardée au chargement
+const currentBackground = localStorage.getItem("background");
+if (currentBackground) {
+    fleurBackgroundColor.style.backgroundColor = currentBackground;
+}
+
+// Changer la couleur du fond quand on clique sur une couleur
+colorOptions.forEach(option => {
+    option.addEventListener("click", () => {
+        const selectedColor = option.dataset.color;
+        fleurBackgroundColor.style.backgroundColor = selectedColor;
+        localStorage.setItem("background", selectedColor);
+        console.log("Couleur du fond changé en : " + selectedColor);
+    });
+});
+
+// fermer le menu de personnalisation
+const closePersonnalisationMenuButton = document.getElementById("closePersonnalisationMenu");
+
+closePersonnalisationMenuButton.addEventListener("click", () => {
+    personnalisationMenu.style.display = "none";
+});
+
+
+// changer la fleur
+const flower = document.getElementById("flower");
+const flowerOptions = document.querySelectorAll(".flowerOption");
+
+const savedFlower = localStorage.getItem("flower");
+if (savedFlower) {
+    flower.src = savedFlower;
+}
+flowerOptions.forEach(option => {
+    option.addEventListener("click", () => {
+        const selectedFlower = "images/flower/" + option.dataset.flower + ".png";
+        flower.src = selectedFlower;
+        localStorage.setItem("flower", selectedFlower);
+        console.log("Fleur changée en : " + selectedFlower);
+    });
+});
+
+
+// interaction avec la fleur
+const flowerMessage = document.getElementById("flowermessage");
+const phrases = [
+    "Aïe ! Ça chatouille 😄",
+    "Encore un bisou ? 💋",
+    "Je pousse à la vitesse de la lumière !",
+    "T'as pas un peu d’eau ?",
+    "J’suis pas une marguerite hein.",
+    "Bon ça suffit là, j'ai une vie moi 😤",
+    "Mais c'est quoi ce vent de folie ?! 🌬️",
+    "Je suis plus rapide qu’un éclair ⚡!",
+    "J’ai soif comme un chameau 🐪",
+    "Si tu m’arrêtes encore, je vais te gronder 😡",
+    "Attends, j’ai un truc à faire moi, là ! ⏳",
+    "C’est pas comme ça qu’on me parle, hein ? 👀",
+    "Mais tu sais que je suis trop cool, non ? 😎",
+    "Je vais finir par partir avec la lune 🌕",
+    "C’est pas parce que je suis mignon que tu peux tout me demander ! 🐾",
+    "Je vais te montrer ce que c’est la vitesse 💨",
+];
+
+// Récupérer la valeur de flowerCount depuis le localStorage, ou définir à 0 si elle n'existe pas
+let flowerCount = localStorage.getItem("flowerCount") ? parseInt(localStorage.getItem("flowerCount")) : 0;
+
+flower.addEventListener("click", () => {
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    flowerMessage.textContent = (flowerName.innerHTML + " : " + randomPhrase);
+    flowerCount += 1;  // Incrémenter flowerCount
+    console.log(flowerCount);
+    
+    // Sauvegarder la nouvelle valeur de flowerCount dans le localStorage
+    localStorage.setItem("flowerCount", flowerCount);
+
+    // Vérifier si le nombre de clics a atteint 100
+    if (flowerCount >= 100) {
+        unlockSuccess("cuteflower");
+    }
+
+    // Effacer le message après 5 secondes
+    setTimeout(() => {
+        flowerMessage.textContent = "";
+    }, 5000);
+});
 
 
 // Sélectionne la croix pour fermer le menu des succès
@@ -129,6 +246,12 @@ const succesList = [
         description: "Achète 50 parasols automatiques.",
         unlocked: false
     },
+    {
+        id: "cuteflower",
+        title: "Fleur Bavarde",
+        description: "Parle 100 fois avec la fleur.",
+        unlocked: false    
+    }
 ];
 
 function unlockSuccess(id) {
@@ -553,9 +676,21 @@ const startWaterInterval = () => {
     }, 1000 + ArrosoirBonus());
 };
 
+const phrasesWater = [
+    "Ah, c'est rafraîchissant !",
+    "Merci, j'ai besoin de l'eau !",
+    "Je sens que je vais grandir encore plus !",
+];
+
 waterButton.addEventListener("click", () => {
     waterLevel = Math.min(100, waterLevel + 10);
     updateFlowerStatus();
+    const randomPhrase = phrasesWater[Math.floor(Math.random() * phrasesWater.length)];
+    flowerMessage.textContent = (flowerName.innerHTML + " : " + randomPhrase);
+    // Effacer le message après 5 secondes
+    setTimeout(() => {
+        flowerMessage.textContent = "";
+    }, 5000);
 });
 
 let autoWaterInterval;
@@ -629,10 +764,23 @@ const startSunInterval = () => {
     }, 1000 + ParasolBonus());
 };
 
+const phraseSun = [
+    "Ouf un peu de soleil , je vais pouvoir vivre !",
+    "Merci, j'ai besoin de soleil !",
+    "Je me sens protégée, merci !",
+]
+
 sunButton.addEventListener("click", () => {
     sunLevel = Math.min(100, sunLevel + 10);
     updateSunStatus();
+    const randomPhrase = phraseSun[Math.floor(Math.random() * phraseSun.length)];
+    flowerMessage.textContent = (flowerName.innerHTML + " : " + randomPhrase);
+    // Effacer le message après 5 secondes
+    setTimeout(() => {
+        flowerMessage.textContent = "";
+    }, 5000);
 });
+
 
 startSunInterval(); // Start the sun interval
 

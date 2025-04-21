@@ -21,11 +21,12 @@
         <p id="alertmessage"></p>
         <p id="alertmessagesun"></p>
         <p id="alertinsect"></p>
+        <p id="flowermessage"></p>
     </div>
 
     <!-- fleur -->
      <div id="fleur">
-         <img class="fleur" src="images/flower/fleur.png" alt="fleur">
+         <img id="flower" class="fleur" src="" alt="fleur">
          <img id="pluieeffect" class="pluie" src="images/flower/pluie.gif" alt="pluie">
          <img id="etoileeffect" class="etoile" src="images/flower/etoiles.gif" alt="etoile">
      </div>
@@ -44,9 +45,10 @@
             <div class="dropdown-content">
                 <button id="changename">Changer le nom</button>
                 <button id="succes">Succès</button>
+                <button id="blocnote">Bloc Note</button>
                 <button id="minigame">Mini-jeux</button>
                 <button id="myeffectsoption">Effets</button>
-                <!-- <button id="personnalisation">Personnalisation</button> -->
+                <button id="personnalisation">Personnalisation</button>
             </div>
         </div>
         <div class="dropdown">
@@ -68,8 +70,23 @@
     </div>
     </div>
     <div id="personnalisationmenu">
-        <h2>Personnalisation</h2>
-        <button id="background">Changer de fond</button>
+        <h2>Personnalisation
+            <span id="closePersonnalisationMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
+        </h2>
+        <h3>Changer de fond</h3>
+        <div id="colorList">
+            <button class="colorOption" data-color="#f0f8ff">Bleu clair</button>
+            <button class="colorOption" data-color="#ffe4e1">Rose</button>
+            <button class="colorOption" data-color="#d3ffd3">Vert pâle</button>
+            <button class="colorOption" data-color="#fffacd">Jaune clair</button>
+            <button class="colorOption" data-color="#ffffff">Blanc</button>
+        </div>
+        <h3>Changer de fleur</h3>
+        <div id="flowerList">
+            <button class="flowerOption" data-flower="fleur">Fleur</button>
+            <button class="flowerOption" data-flower="fleur2">Fleur 2</button>
+            <button class="flowerOption" data-flower="fleur3">Fleur 3</button>
+        </div>
     </div>
     <div id="successMenu">
         <h2>Succès 
@@ -86,6 +103,15 @@
             <span id="closeEffectsMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
         </h2>
         <ul id="effectslist"></ul>
+    </div>
+
+    <div id="blocnotewindow">
+        <h2>Bloc Note
+            <span id="closeBlocNote" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
+        </h2>
+        <div id="blocnoteinput">
+            <textarea id="blocnoteTextArea" rows="10" cols="30" placeholder="Écris ta note ici..."></textarea>
+        </div>
     </div>
 
     <div id="quizWindow">
@@ -110,8 +136,6 @@
 <!-- ajout a faire -->
  <!--
 Barre de croissance de la fleur avec différents stades -> graines / pousse / tige / bourgeon / fleur
-succès
-quiz botanique
 encyclopédie des plantes
 mauvaise herbes -> 0 to 100 
                 -> un bouton pour enlever les mauvaises herbes
@@ -129,13 +153,9 @@ Journal de bord
 Decor personalisable -> pot , fond du jardin , météo etc
 
  personnalisations -> personnaliser la fleur -> les couleurs , formes tailles etc
-                    -> changer la fleur
-                    -> couleur de fond de la fleur
 
  magasins -> acheter des objets pour la fleur
           -> objet pour diminuer l'apparition des mauvaises herbes
-          -> arrosage automatique -> 200 -> +5 toute les 5 seconds -> achat limiter
-          ->parasol automatique -> 200 -> +5 toute les 5 seconds -> achat limiter
 
 effet a rajouter -> neige
                  -> orage
