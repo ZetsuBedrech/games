@@ -7,7 +7,7 @@
 body {
     font-family: 'Arial', sans-serif;
     background: #ffffff;
-background: linear-gradient(77deg, rgba(255, 255, 255, 1) 35%, rgba(175, 250, 250, 1) 100%);
+    background: linear-gradient(77deg, rgba(255, 255, 255, 1) 35%, rgba(175, 250, 250, 1) 100%);
     color: #333;
     display: flex;
     justify-content: center;
@@ -47,6 +47,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
     transition: background-color 0.3s ease;
+    margin-top:5px;
 }
 
 .buttons button:hover {
@@ -107,7 +108,7 @@ h1 {
 }
 
 #fleur {
-    position: relative; /* Ajoute cette position pour que la pluie soit positionnée par rapport à ce conteneur */
+    position: relative;
     width: 25vh;
     height: 25vh;
     margin-bottom: 25px;
@@ -119,11 +120,11 @@ h1 {
 }
 
 .fleur {
-    position: absolute; /* Permet de superposer l'image de la fleur */
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Assure que la fleur couvre tout le conteneur */
-    height: 100%; /* Assure que la fleur couvre tout le conteneur */
+    width: 100%;
+    height: 100%;
 }
 
 #pluieeffect, #etoileeffect {
@@ -131,10 +132,10 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Prend toute la largeur du conteneur */
-    height: 100%; /* Prend toute la hauteur du conteneur */
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-    z-index: 2; /* Pluie au-dessus de la fleur */
+    z-index: 2;
 }
 
 .dropdown {
@@ -151,7 +152,11 @@ h1 {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 10px;
     z-index: 1;
-  }
+}
+
+.dropdown-content-magasin h3{
+    text-decoration:underline;
+}
   
   .dropdown-content button {
     display: block;
@@ -258,6 +263,7 @@ h1 {
     backdrop-filter: blur(10.6px);
     border: 1px solid rgba(126, 126, 126, 0.3);
     width:70%;
+    z-index:2;
 }
 
 #quizWindow h2{
@@ -390,4 +396,8 @@ h1 {
     border-color: #66afe9;   
     background-color: #e6f7ff;
     outline: none;
+}
+
+#encyclopediewindow{
+    display:none;
 }

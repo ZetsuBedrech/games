@@ -17,7 +17,7 @@ changeName.addEventListener("click", () => {
 const effectButton = document.getElementById("myeffectsoption");
 
 effectButton.addEventListener("click", () => {
-    myEffects.style.display = myEffects.style.display === "none" ? "block" : "none";
+    myEffects.style.display = myEffects.style.display === "block" ? "none" : "block";
 });
 const myEffects = document.getElementById("myeffects");
 const myEffectsList = JSON.parse(localStorage.getItem('myEffectsList')) || []; // Récupère la liste des effets depuis localStorage ou initialisation
@@ -61,7 +61,7 @@ const blocNoteTextArea = document.getElementById("blocnoteTextArea");
 
 // Ouvrir ou fermer la fenêtre du bloc-note
 blocNote.addEventListener("click", () => {
-    blocNoteWindow.style.display = blocNoteWindow.style.display === "none" ? "block" : "none";
+    blocNoteWindow.style.display = blocNoteWindow.style.display === "block" ? "none" : "block";
 });
 
 // Fermer le bloc-note avec le "x"
@@ -89,7 +89,7 @@ const personnalisationButton = document.getElementById("personnalisation");
 const personnalisationMenu = document.getElementById("personnalisationmenu");
 
 personnalisationButton.addEventListener("click", () => {
-    personnalisationMenu.style.display = personnalisationMenu.style.display === "none" ? "block" : "none";
+    personnalisationMenu.style.display = personnalisationMenu.style.display === "block" ? "none" : "block";
 });
 
 
@@ -138,6 +138,57 @@ flowerOptions.forEach(option => {
         console.log("Fleur changée en : " + selectedFlower);
     });
 });
+
+
+
+// encyclopedie
+const encyclopedieButton = document.getElementById("encyclopedie");
+const encyclopedieMenu = document.getElementById("encyclopediewindow");
+
+encyclopedieButton.addEventListener("click", () => {
+    encyclopedieMenu.style.display = encyclopedieMenu.style.display === "block" ? "none" : "block";
+});
+
+// fermer le menu de l'encyclopedie
+const closeEncyclopedieMenuButton = document.getElementById("closeEncyclopedieMenu");
+
+closeEncyclopedieMenuButton.addEventListener("click", () => {
+    encyclopedieMenu.style.display = "none";
+});
+
+// info sur les fleurs
+const phrasesencyclopedia = [
+    {
+        id: "id",
+        title: "title",
+        description: "description",
+        image: 'fleur.png'
+    },
+    {
+        id: "id2",
+        title: "title2",
+        description: "description2",
+        image: 'fleur.png'
+    },
+]
+
+const encyclopedieInfo = document.getElementById("encyclopedieinfo");
+// On vide d'abord la div au cas où
+encyclopedieInfo.innerHTML = "";
+
+// On parcourt les éléments
+phrasesencyclopedia.forEach((item) => {
+    const entry = `
+        <div id="${item.id}" class="encyclo-entry">
+            <h2>${item.title}</h2>
+            <p>${item.description}</p>
+            <img src="images/flower/${item.image}" alt="${item.title}">
+        </div>
+    `;
+    encyclopedieInfo.innerHTML += entry;
+});
+
+
 
 
 // interaction avec la fleur
@@ -290,7 +341,7 @@ successButton.addEventListener("click", () => {
         successListEl.appendChild(li);
     });
 
-    successMenu.style.display = successMenu.style.display === "none" ? "block" : "none";
+    successMenu.style.display = successMenu.style.display === "block" ? "none" : "block";
 });
 
 // Sélectionne la croix pour fermer le menu des succès
@@ -307,14 +358,14 @@ const miniGame = document.getElementById("minigame");
 const miniGamesWindow = document.getElementById("minigames");
 
 miniGame.addEventListener("click", () => {
-    miniGamesWindow.style.display = miniGamesWindow.style.display === "none" ? "block" : "none";
+    miniGamesWindow.style.display = miniGamesWindow.style.display === "block" ? "none" : "block";
 });
 
 const quiz = document.getElementById("quiz");
 const quizWindow = document.getElementById("quizWindow");
 
 quiz.addEventListener("click", () => {
-    quizWindow.style.display = quizWindow.style.display === "none" ? "block" : "none";
+    quizWindow.style.display = quizWindow.style.display === "block" ? "none" : "block";
 });
 // Sélectionne la croix pour fermer le menu des succès
 const closeQuizMenuButton = document.getElementById("closeQuizMenu");
@@ -410,7 +461,7 @@ const updateInventory = () => {
 
 document.getElementById("inventory").addEventListener("click", () => {
     const content = document.getElementById("inventorycontent");
-    content.style.display = content.style.display === "none" ? "block" : "none";
+    content.style.display = content.style.display === "block" ? "none" : "block";
     if (content.style.display === "block") {
         updateInventory(); // Met à jour l'inventaire
     }

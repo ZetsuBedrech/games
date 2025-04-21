@@ -26,7 +26,7 @@
 
     <!-- fleur -->
      <div id="fleur">
-         <img id="flower" class="fleur" src="" alt="fleur">
+         <img id="flower" class="fleur" src="images/flower/fleur.png" alt="fleur">
          <img id="pluieeffect" class="pluie" src="images/flower/pluie.gif" alt="pluie">
          <img id="etoileeffect" class="etoile" src="images/flower/etoiles.gif" alt="etoile">
      </div>
@@ -41,19 +41,9 @@
     <!-- autre buttons -->
     <div class="otherbuttons">
         <div class="dropdown">
-            <button>Option 🌸</button>
-            <div class="dropdown-content">
-                <button id="changename">Changer le nom</button>
-                <button id="succes">Succès</button>
-                <button id="blocnote">Bloc Note</button>
-                <button id="minigame">Mini-jeux</button>
-                <button id="myeffectsoption">Effets</button>
-                <button id="personnalisation">Personnalisation</button>
-            </div>
-        </div>
-        <div class="dropdown">
             <button>Magasin 🌸</button>
             <div class="dropdown-content">
+              <h3>Entretien</h3>
               <button id="buywater">Arrosoir (20€)</button>
               <button id="buysun">Parasol (20€)</button>
               <h3>Effets visuel</h3>
@@ -65,10 +55,30 @@
             </div>
         </div>
         <button id="inventory">Inventaire</button>
-    <div id="inventorycontent" class="inventorycontent">
-        <p id="inventorymessage"></p>
+        <div id="inventorycontent" class="inventorycontent">
+            <p id="inventorymessage"></p>
+        </div>
     </div>
+    <div class="otherbuttons">
+        <div class="dropdown">
+            <button>Option 🌸</button>
+            <div class="dropdown-content">
+                <button id="changename">Changer le nom</button>
+                <button id="myeffectsoption">Effets</button>
+                <button id="personnalisation">Personnalisation</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button>Option 2 🌸</button>
+            <div class="dropdown-content">
+                <button id="succes">Succès</button>
+                <button id="blocnote">Bloc Note</button>
+                <button id="minigame">Mini-jeux</button>
+                <button id="encyclopedie">Encyclopédie</button>
+            </div>
+        </div>
     </div>
+
     <div id="personnalisationmenu">
         <h2>Personnalisation
             <span id="closePersonnalisationMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
@@ -114,6 +124,15 @@
         </div>
     </div>
 
+    <div id="encyclopediewindow">
+        <h2>Encyclopédie
+            <span id="closeEncyclopedieMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
+        </h2>
+        <div id="encyclopedieinfo">
+
+        </div>
+    </div>
+
     <div id="quizWindow">
         <span id="closeQuizMenu" style="cursor: pointer; font-size: 22px; font-weight: bold; color: red; margin-left: 10px;">x</span>
         <h2 id="question"></h2>
@@ -136,7 +155,6 @@
 <!-- ajout a faire -->
  <!--
 Barre de croissance de la fleur avec différents stades -> graines / pousse / tige / bourgeon / fleur
-encyclopédie des plantes
 mauvaise herbes -> 0 to 100 
                 -> un bouton pour enlever les mauvaises herbes
                 -> il faut acheter un objet pour le faire
